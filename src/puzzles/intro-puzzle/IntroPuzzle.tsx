@@ -20,7 +20,7 @@ export class IntroPuzzle extends React.Component {
           <li>Can you reach the end?!</li>
         </ul>
 
-        <button className={'go-button'} onClick={this.puzzleState.completePuzzle}>
+        <button className={'standard-button'} onClick={this.puzzleState.completePuzzle}>
           Let's go!
         </button>
       </div>

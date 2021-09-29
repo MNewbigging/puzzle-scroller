@@ -1,26 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import '../common/common-styles.scss';
 
 .intro-puzzle {
   width: 100%;
   height: 100%;
 
-  font-family: 'Poppins', sans-serif;
+  font-family: $standardFont;
   font-size: 2rem;
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  .go-button {
-    padding: 10px;
-    border-radius: 5px;
-    outline: none;
-    user-select: none;
-    box-shadow: 0;
-    border: none;
-    cursor: pointer;
-    font-size: 2rem;
-    background-color: lawngreen;
-  }
 }

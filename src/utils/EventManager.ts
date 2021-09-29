@@ -1,6 +1,10 @@
-export enum PuzzleEvent {
+import { Puzzle } from '../puzzles/common/PuzzleData';
+
+export enum PuzzleEventType {
   COMPLETED = 'completed',
 }
+
+export type PuzzleEvent = { type: PuzzleEventType; puzzle: Puzzle };
 
 type PuzzleEventListener = (puzzleEvent: PuzzleEvent) => void;
 

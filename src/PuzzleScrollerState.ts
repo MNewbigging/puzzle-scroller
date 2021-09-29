@@ -1,29 +1,38 @@
 import { action, observable } from 'mobx';
-import { allPuzzles } from './puzzles/common/AllPuzzles';
-import { eventManager, PuzzleEvent } from './utils/EventManager';
+import { Puzzle } from './puzzles/common/PuzzleData';
+
+import { eventManager, PuzzleEvent, PuzzleEventType } from './utils/EventManager';
 
 export class PuzzleScrollerState {
   @observable public currentPuzzle = 1;
-  public readonly maxPuzzles = allPuzzles.length;
+  public completedPuzzles: Puzzle[] = [];
 
   constructor() {
     eventManager.registerForPuzzleEvents(this.onPuzzleEvent);
   }
 
   private readonly onPuzzleEvent = (event: PuzzleEvent) => {
-    switch (event) {
-      case PuzzleEvent.COMPLETED:
-        this.onCompletePuzzle();
+    switch (event.type) {
+      case PuzzleEventType.COMPLETED:
+        this.onCompletePuzzle(event.puzzle);
         break;
     }
   };
 
-  @action private onCompletePuzzle() {
-    // Add another puzzle
-    this.currentPuzzle++;
+  @action private onCompletePuzzle(puzzle: Puzzle) {
+    // Has this been completed?
+    const completed = this.completedPuzzles.find((p) => p.name === puzzle.name);
+    if (!completed) {
+      this.completePuzzle(puzzle);
+    }
 
-    // Once added, scroll down to new puzzle after v brief delay
+    // Always scroll down to bottom after v brief delay
     setTimeout(this.scrollDown, 100);
+  }
+
+  @action private completePuzzle(puzzle: Puzzle) {
+    this.completedPuzzles.push(puzzle);
+    this.currentPuzzle++;
   }
 
   private scrollDown = () => {

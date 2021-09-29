@@ -1,8 +1,14 @@
 import { observable } from 'mobx';
-import { eventManager, PuzzleEvent } from '../../utils/EventManager';
+import { eventManager, PuzzleEvent, PuzzleEventType } from '../../utils/EventManager';
+import { Puzzle } from './PuzzleData';
 
 export class BasePuzzleState {
   @observable public completed = false;
+  public puzzle: Puzzle;
+
+  constructor(puzzle: Puzzle) {
+    this.puzzle = puzzle;
+  }
 
   public isCompleted = () => {
     return this.completed;
@@ -10,6 +16,12 @@ export class BasePuzzleState {
 
   public completePuzzle = () => {
     this.completed = true;
-    eventManager.firePuzzleEvent(PuzzleEvent.COMPLETED);
+
+    const puzzleEvent: PuzzleEvent = {
+      type: PuzzleEventType.COMPLETED,
+      puzzle: this.puzzle,
+    };
+
+    eventManager.firePuzzleEvent(puzzleEvent);
   };
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { App } from './App';
+import { PuzzleScrollerApp } from './PuzzleScrollerApp';
 
 import './app.scss';
 
-ReactDOM.render(<App />, document.getElementById('app-root'));
+ReactDOM.render(<PuzzleScrollerApp />, document.getElementById('app-root'));

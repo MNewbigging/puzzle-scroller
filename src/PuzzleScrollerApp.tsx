@@ -1,11 +1,11 @@
 import { observer } from 'mobx-react';
 import React from 'react';
 
-import { allPuzzles } from './puzzles/AllPuzzles';
+import { allPuzzles } from './puzzles/common/AllPuzzles';
 import { PuzzleWrapper } from './puzzles/common/PuzzleWrapper';
+import { PuzzleScrollerState } from './PuzzleScrollerState';
 
 import './puzzle-scroller-app.scss';
-import { PuzzleScrollerState } from './PuzzleScrollerState';
 
 @observer
 export class PuzzleScrollerApp extends React.Component {
@@ -15,9 +15,13 @@ export class PuzzleScrollerApp extends React.Component {
     // Only render the completed puzzles and current puzzle
     const puzzles: JSX.Element[] = [];
     for (let i = 0; i < this.appState.currentPuzzle; i++) {
-      puzzles.push(<PuzzleWrapper>{allPuzzles[i]}</PuzzleWrapper>);
+      puzzles.push(<PuzzleWrapper key={`puzzle-${i}`}>{allPuzzles[i]}</PuzzleWrapper>);
     }
 
-    return <div className={'app-container'}>{puzzles}</div>;
+    return (
+      <div id={'app-container'} className={'app-container'}>
+        {puzzles}
+      </div>
+    );
   }
 }

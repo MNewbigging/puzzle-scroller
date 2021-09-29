@@ -1,6 +1,14 @@
 .app-container {
-  width: 100%;
+  // Subtract scrollbar width
+  width: calc(100vw - 10px);
   overflow-y: auto;
 }
 
 // Style the scrollbar here
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: grey;
+}

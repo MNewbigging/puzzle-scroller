@@ -7,15 +7,20 @@ interface Props {
   text: string;
   onClick: () => void;
   disabled: boolean;
+  className?: string;
 }
 
 @observer
 export class ContinueButton extends React.Component<Props> {
   public render() {
-    const { text, onClick, disabled } = this.props;
+    const { text, onClick, disabled, className } = this.props;
 
     return (
-      <button className={'continue-button'} onClick={() => onClick()} disabled={disabled}>
+      <button
+        className={'continue-button ' + className}
+        onClick={() => onClick()}
+        disabled={disabled}
+      >
         {text}
       </button>
     );

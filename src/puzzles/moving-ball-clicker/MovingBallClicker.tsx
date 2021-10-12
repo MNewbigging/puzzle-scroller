@@ -3,10 +3,9 @@ import React from 'react';
 
 import { MovingBallClickerState } from './MovingBallClickerState';
 import { BasePuzzleState } from '../common/BasePuzzleState';
-
-import './moving-ball-clicker.scss';
 import { ContinueButton } from '../common/components/ContinueButton';
 
+import './moving-ball-clicker.scss';
 @observer
 export class MovingBallClicker extends React.Component {
   private puzzleState: MovingBallClickerState | undefined = new MovingBallClickerState();
@@ -28,6 +27,7 @@ export class MovingBallClicker extends React.Component {
           text={'Continue'}
           onClick={this.onContinue}
           disabled={this.disableContinue()}
+          className={'mb-continue-button'}
         />
       </div>
     );
@@ -48,6 +48,7 @@ export class MovingBallClicker extends React.Component {
   private addBalls() {
     return this.puzzleState.balls.map((ball) => (
       <div
+        key={ball.id}
         className={['ball', ball.colour, ball.state].join(' ')}
         style={{
           width: `${ball.size}px`,

@@ -2,6 +2,7 @@ import { observer } from 'mobx-react';
 import React from 'react';
 
 import { BasePuzzleState } from '../common/BasePuzzleState';
+import { ContinueButton } from '../common/components/ContinueButton';
 
 import './intro-puzzle.scss';
 
@@ -20,9 +21,11 @@ export class IntroPuzzle extends React.Component {
           <li>Can you reach the end?!</li>
         </ul>
 
-        <button className={'standard-button'} onClick={this.puzzleState.completePuzzle}>
-          Let's go!
-        </button>
+        <ContinueButton
+          text={"Let's go!"}
+          onClick={this.puzzleState.completePuzzle}
+          disabled={false}
+        />
       </div>
     );
   }

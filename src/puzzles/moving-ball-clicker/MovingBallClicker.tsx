@@ -2,9 +2,10 @@ import { observer } from 'mobx-react';
 import React from 'react';
 
 import { MovingBallClickerState } from './MovingBallClickerState';
+import { BasePuzzleState } from '../common/BasePuzzleState';
 
 import './moving-ball-clicker.scss';
-import { BasePuzzleState } from '../common/BasePuzzleState';
+import { ContinueButton } from '../common/components/ContinueButton';
 
 @observer
 export class MovingBallClicker extends React.Component {
@@ -22,13 +23,12 @@ export class MovingBallClicker extends React.Component {
         <div id={'ball-park'} className={'ball-park'}>
           {this.puzzleState && this.addBalls()}
         </div>
-        <button
-          className={'standard-button'}
+
+        <ContinueButton
+          text={'Continue'}
           onClick={this.onContinue}
           disabled={this.disableContinue()}
-        >
-          Continue
-        </button>
+        />
       </div>
     );
   }

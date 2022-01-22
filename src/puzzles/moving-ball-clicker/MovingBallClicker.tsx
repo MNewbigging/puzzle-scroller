@@ -1,11 +1,12 @@
-import { observer } from 'mobx-react';
-import React from 'react';
+import './moving-ball-clicker.scss';
 
-import { MovingBallClickerState } from './MovingBallClickerState';
+import React from 'react';
+import { observer } from 'mobx-react';
+
 import { BasePuzzleState } from '../common/BasePuzzleState';
 import { ContinueButton } from '../common/components/ContinueButton';
+import { MovingBallClickerState } from './MovingBallClickerState';
 
-import './moving-ball-clicker.scss';
 @observer
 export class MovingBallClicker extends React.Component {
   private puzzleState: MovingBallClickerState | undefined = new MovingBallClickerState();
@@ -20,7 +21,7 @@ export class MovingBallClicker extends React.Component {
       <div className={'moving-ball-clicker'}>
         <div className={'text'}>Click all the red balls to continue! {this.renderTracker()}</div>
         <div id={'ball-park'} className={'ball-park'}>
-          {this.puzzleState && this.addBalls()}
+          {this.puzzleState && this.renderBalls()}
         </div>
 
         <ContinueButton
@@ -45,7 +46,7 @@ export class MovingBallClicker extends React.Component {
     );
   }
 
-  private addBalls() {
+  private renderBalls() {
     return this.puzzleState.balls.map((ball) => (
       <div
         key={ball.id}
